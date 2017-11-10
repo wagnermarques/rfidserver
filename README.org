@@ -1,0 +1,8 @@
+* Requisicao de Servicos
+  
+  Software para gerenciamento de requisição de serviços.
+
+  O Objetivo deste software é aprender Vaadin e criar algo que possa
+  ser útil
+  
+

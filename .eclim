@@ -1,0 +1,5 @@
+;; -*- mode: emacs-lisp -*-
+(((name . "Run remote control")
+  (main-class . "com.lgi.remotecontrol.service.RemoteControlApplication")
+  (program-args . "server src/main/resources/dev.json")
+  (vm-args . "-Dwhatever=42")))
