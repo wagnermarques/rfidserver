@@ -12,10 +12,11 @@ public class MenuPrincipal {
         MenuItem mnuItemcadastro = barmenu.addItem("Cadastro", null, null);
 
         MenuItem mnuItemUsuarioDoSistema = mnuItemcadastro.addItem("Usuario do Sistema",null,null);
+        MenuItem mnuItemUsuarioDoSistemaINSERIR = mnuItemUsuarioDoSistema.addItem("Inserir",null,null);
         MenuItem mnuItemPessoa = mnuItemcadastro.addItem("Pessoas",null,null);
 
         MenuItem mnuItemAjuda = barmenu.addItem("Ajuda", null, null);
-        MenuItem mnuItemSpbre = mnuItemAjuda.addItem("Sobre", null, null);
+        MenuItem mnuItemSobre = mnuItemAjuda.addItem("Sobre", null, null);
 
         return barmenu;
     }

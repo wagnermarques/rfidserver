@@ -11,8 +11,8 @@ import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.TextField;
-
 import br.com.fzlbpms.model.Pessoa;
+import br.com.fzlbpms.model.*;
 
 public class FormularioDeCadastroDePessoas extends FormLayout {
 
