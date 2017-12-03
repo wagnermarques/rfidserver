@@ -12,6 +12,7 @@ import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.TextField;
 import br.com.fzlbpms.model.Pessoa;
+import br.com.fzlbpms.view.vaadin.fzlcomponents.JLabel.JsLabel;
 import br.com.fzlbpms.model.*;
 
 public class FormularioDeCadastroDePessoas extends FormLayout {
@@ -48,6 +49,10 @@ public class FormularioDeCadastroDePessoas extends FormLayout {
 
 		Button salvar = new Button("Salvar");
 		gridLayout.addComponent(salvar, 1, 3, 1, 3);
+		
+		JsLabel fzlJsLabel = new JsLabel("asdfasdfafds");
+		gridLayout.addComponent(fzlJsLabel);
+		
 
 		this.addComponent(gridLayout);
 

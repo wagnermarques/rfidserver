@@ -10,7 +10,10 @@
 	<name>rfidserver</name>
 
         <properties>
-		<vaadin.version>8.1.5</vaadin.version>
+	  <vaadin.version>8.1.5</vaadin.version>
+          <!--
+              https://vaadin.com/download/prerelease/8.1/8.1.0/8.1.0.rc2/docs/api/
+          -->
 		<vaadin.plugin.version>8.1.5</vaadin.plugin.version>
 
 	        <jetty.plugin.version>9.3.9.v20160517</jetty.plugin.version>
@@ -26,8 +29,6 @@
 
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<!-- If there are no local customizations, this can also be "fetch" or 
-			"cdn" -->
 
 		<vaadin.widgetset.mode>local</vaadin.widgetset.mode>
 
@@ -149,6 +150,12 @@
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-themes</artifactId>
 		</dependency>
+                <!-- https://vaadin.com/forum#!/thread/16204256 -->
+                <dependency>
+                  <groupId>org.vaadin.blackbluegl</groupId>
+                  <artifactId>calendar-component</artifactId>
+                  <version>2.0-BETA3</version>
+                </dependency>
 
 		<!-- JPA 2.1 COM Hibernate 5 -->
 		<!-- Hibernate -->
@@ -234,6 +241,7 @@
 	    <resource>
 	      <directory>src/main/resources</directory>
 	    </resource>
+            
 	  </resources>
 
           <plugins>                  
@@ -408,7 +416,54 @@
                   </goals>
                 </execution>
               </executions>              
-            </plugin>
+            </plugin>          
+
+          <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.8</version>
+            <executions>
+              <execution>
+                <id>copy-js-files-for-AbstractJavaScriptComponent</id>
+                <!--
+                    1) The AbstractJavaScriptComponent needs javascript
+                    files
+
+                    2) Each one js file are in the same folder that the
+                    vaadin AbstractJavaScriptComponent java component
+
+                    3) That js files needs to be copied away with its
+                    compiled AbstractJavaScriptComponent java file
+
+                    https://vaadin.com/download/prerelease/8.1/8.1.0/8.1.0.rc2/docs/api/
+                -->
+                <phase>compile</phase>
+                <!--
+                    at compilation maven phase this taks
+                    copy all files that are brother os java files and
+                    put all that files along with respective .class
+                    (java compiled file)
+                    This is important to vaadin custom js
+                    AbstractJsComponents                    
+                -->
+                <configuration>
+                  <tasks>
+                    <copy todir="${project.build.directory}/classes">
+                      <fileset dir="${project.basedir}/src/main/java">
+                      </fileset>
+                    </copy>
+                    <!--
+                    <copy
+                        file="${project.basedir}/main/java/src/br/com/fzlbpms/view/vaadin/fzlcomponents/JLabel/JsLabel.js"
+                        tofile="${project.build.directory}/rfidserver/WEB-INF/classes/br/com/fzlbpms/view/vaadin/fzlcomponents/JsLabel.js"/>
+                        -->
+                  </tasks>     
+                </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
           </plugins>
 	</build>
         
