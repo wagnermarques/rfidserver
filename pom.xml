@@ -449,6 +449,7 @@
                   <tasks>
                     <copy todir="${project.build.directory}/classes">
                       <fileset dir="${project.basedir}/src/main/java">
+                        <exclude name="**/*.java"/>
                       </fileset>
                     </copy>
                     <!--

@@ -3,6 +3,7 @@ package br.com.fzlbpms.view;
 import java.io.File;
 
 import com.vaadin.icons.VaadinIcons;
+import com.vaadin.navigator.View;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;
 import com.vaadin.ui.Alignment;
@@ -13,11 +14,13 @@ import com.vaadin.ui.Image;
 import com.vaadin.ui.TextField;
 import br.com.fzlbpms.model.Pessoa;
 import br.com.fzlbpms.view.vaadin.fzlcomponents.JLabel.JsLabel;
-import br.com.fzlbpms.model.*;
+//import br.com.fzlbpms.model.*;
 
-public class FormularioDeCadastroDePessoas extends FormLayout {
+public class EntityFormView extends FormLayout implements View{
 
-	public FormularioDeCadastroDePessoas(Pessoa p,String formCaption) {
+	public final static String VIEW_NAME = "entityForm";
+	
+	public EntityFormView(Pessoa p,String formCaption) {
 
 		this.setCaption(formCaption);
 		GridLayout gridLayout = new GridLayout(4, 4);
@@ -58,4 +61,6 @@ public class FormularioDeCadastroDePessoas extends FormLayout {
 
 	}
 
+	
+	
 }
