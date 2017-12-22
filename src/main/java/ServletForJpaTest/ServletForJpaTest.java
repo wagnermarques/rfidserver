@@ -15,7 +15,7 @@ import org.hibernate.SessionFactory;
 import br.com.fzlbpms.model.Pessoa;
 import br.com.fzlbpms.persistence.HibernateUtil;
 import br.com.fzlbpms.persistence.JPAUtil;
-import br.com.fzlbpms.persistence.JDBCUtil;
+import br.com.fzlbpms.persistence.JdbcUtil;
 
 import br.com.fzlbpms.persistence.PessoaJPADAO;
 

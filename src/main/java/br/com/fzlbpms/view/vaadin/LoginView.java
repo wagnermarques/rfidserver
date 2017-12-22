@@ -27,14 +27,14 @@ public class LoginView extends VerticalLayout implements View {
 	private final Logger logger = Logger.getLogger(LoginView.class);
 	
 	public static final String LOGIN_VIEW_NAME="login_view";
-		
+	
 	@Override
 	public void enter(ViewChangeEvent event) {
 		View.super.enter(event);
 		
 		FormLayout loginFormLayout = new FormLayout();
-		TextField txtUserName = new TextField("Usuario");
-		TextField txtUserSenha = new PasswordField("Password");
+		 TextField txtUserName = new TextField("Usuario");
+		 TextField txtUserSenha = new PasswordField("Password");
 		
 		HorizontalLayout buttonsHorizontalLayout = new HorizontalLayout();
 		Button buttonOK = new Button("OK", new Button.ClickListener() {			
