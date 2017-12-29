@@ -28,15 +28,16 @@ public class LoginView extends VerticalLayout implements View {
 	
 	public static final String LOGIN_VIEW_NAME="login_view";
 	
-	@Override
-	public void enter(ViewChangeEvent event) {
-		View.super.enter(event);
+	
+	public LoginView() {
+		
+		//layout for buttons ok and clean
+		HorizontalLayout buttonsHorizontalLayout = new HorizontalLayout();
 		
 		FormLayout loginFormLayout = new FormLayout();
-		 TextField txtUserName = new TextField("Usuario");
-		 TextField txtUserSenha = new PasswordField("Password");
+		final TextField txtUserName = new TextField("Usuario");
+		final TextField txtUserSenha = new PasswordField("Password");
 		
-		HorizontalLayout buttonsHorizontalLayout = new HorizontalLayout();
 		Button buttonOK = new Button("OK", new Button.ClickListener() {			
 			@Override
 			public void buttonClick(ClickEvent event) {
@@ -72,11 +73,11 @@ public class LoginView extends VerticalLayout implements View {
 				
 			}
 		});
-		buttonsHorizontalLayout.addComponents(buttonOK,buttonCleanForm);
-		
-		loginFormLayout.addComponents(txtUserName,txtUserSenha,buttonsHorizontalLayout);
-		
-		addComponent(loginFormLayout);				
+	
+		buttonsHorizontalLayout.addComponents(buttonOK,buttonCleanForm);		
+		loginFormLayout.addComponents(txtUserName,txtUserSenha,buttonsHorizontalLayout);		
+		addComponent(loginFormLayout);
 	}
+	
 	
 }

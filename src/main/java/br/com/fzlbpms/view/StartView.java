@@ -25,7 +25,6 @@ public class StartView extends VerticalLayout implements View {
 	public StartView() {
 		setSizeFull();
 
-
 		Link lnkHOME = new Link("HOME", new ExternalResource(""));
 	  
 		Link lnkLogin = new Link("Mostra Login", new ExternalResource("#!" + LoginView.LOGIN_VIEW_NAME));
@@ -45,7 +44,7 @@ public class StartView extends VerticalLayout implements View {
 //					    "This is the <i>last</i> warning",
 //					    Notification.Type.WARNING_MESSAGE, true)
 //					    .show(Page.getCurrent());
-				Main.navigator.navigateTo("");
+				//Main.navigator.navigateTo("");
 			}
 
 		});

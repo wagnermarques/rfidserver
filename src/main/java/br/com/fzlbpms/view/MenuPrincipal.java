@@ -20,11 +20,9 @@ public class MenuPrincipal {
 			@Override
 			public void menuSelected(MenuItem selectedItem) {
 	
-//				Notification.show("This is the caption",
-//		                  selectedItem.getText(),
-//		                  Notification.Type.HUMANIZED_MESSAGE);
-
-				
+				Notification.show("This is the caption",
+		                  selectedItem.getText(),
+		                  Notification.Type.ERROR_MESSAGE);				
 			}
 		});
         

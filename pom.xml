@@ -20,7 +20,7 @@
 		<jetty.http.port>9999</jetty.http.port>
                 <tomcat.http.port>9999</tomcat.http.port>
 
-                <tomcat8-instance-hostname>192.168.33.91</tomcat8-instance-hostname>
+                <tomcat8-instance-hostname>127.0.0.1</tomcat8-instance-hostname>
                 <tomcat8-instance-servlet-port>8080</tomcat8-instance-servlet-port>
                 <tomcat8-instance-username>admin</tomcat8-instance-username>
                 <tomcat8-instance-password>admin123</tomcat8-instance-password>

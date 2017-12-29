@@ -88,11 +88,10 @@ public class Main extends UI implements View {
 
 		// Create and register the views
 		navigator.addView(StartView.START_VIEW_NAME, new StartView());
-
 		navigator.addView(LoginView.LOGIN_VIEW_NAME, new LoginView());
 
-		navigator.addView(EntityFormView.VIEW_NAME, new EntityFormView(new Pessoa(), "Cadastro de Pessoas"));
-		navigator.addView(MessageView.NAME, new MessageView());
+		//navigator.addView(EntityFormView.VIEW_NAME, new EntityFormView(new Pessoa(), "Cadastro de Pessoas"));
+		//navigator.addView(MessageView.NAME, new MessageView());
 	}
 
 	public static void setValueInHttpSession(String attrName, Object value) {
