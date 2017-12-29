@@ -12,6 +12,9 @@ public class Pessoa {
 	private Integer id;
 	private String nome;
 	
+	public Pessoa(String nome) {
+		this.nome = nome;
+	}
 	
 	public Integer getId() {
 		return id;

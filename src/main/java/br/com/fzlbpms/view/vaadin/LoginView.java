@@ -1,12 +1,12 @@
 package br.com.fzlbpms.view.vaadin;
 
 import java.util.HashMap;
+
 import java.util.Map;
 
 import org.jboss.logging.Logger;
 
 import com.vaadin.navigator.View;
-import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
@@ -23,6 +23,11 @@ import br.com.fzlbpms.view.StartView;
 import com.vaadin.ui.Button.ClickEvent;
 
 public class LoginView extends VerticalLayout implements View {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private final Logger logger = Logger.getLogger(LoginView.class);
 	
