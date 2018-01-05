@@ -7,8 +7,8 @@ Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration
   <session-factory>
       <!-- Database connection settings -->
       <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-      <property name="connection.url">jdbc:mysql://192.168.33.151/rfidserver?serverTimezone=UTC</property>
-      <property name="connection.username">root</property>
+      <property name="connection.url">jdbc:mysql://192.168.0.234/rfidserver?serverTimezone=UTC</property>
+      <property name="connection.username">rfid</property>
       <property name="connection.password">admin123</property>
  
       <!-- JDBC connection pool (use the built-in) -->
@@ -28,9 +28,9 @@ Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration
 
       <property name="hibernate.hbm2ddl.auto">update</property>
       
-      <mapping class="br.com.fzlbpms.model.common.Pessoa" />
-      <mapping class="br.com.fzlbpms.model.sistema.SistemaUsuario" />
-      <mapping class="br.com.fzlbpms.model.sistema.SistemaUsuarioRole" />
+      <mapping class="br.com.fzlbpms.model.Pessoa" />
+      <mapping class="br.com.fzlbpms.model.SistemaUsuario" />
+      <mapping class="br.com.fzlbpms.model.SistemaUsuarioRole" />
   </session-factory>
  
 </hibernate-configuration>

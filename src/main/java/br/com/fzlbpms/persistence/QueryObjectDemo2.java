@@ -2,12 +2,15 @@ package br.com.fzlbpms.persistence;
  
 import java.util.List;
 
+
  
 import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
+import br.com.fzlbpms.model.common.Pessoa;
 import br.com.fzlbpms.persistence.HibernateUtil;
-import br.com.fzlbpms.model.Pessoa;
+
  
 public class QueryObjectDemo2 {
  

@@ -2,6 +2,7 @@ package br.com.fzlbpms.view;
 
 import java.io.File;
 
+
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.server.FileResource;
@@ -12,7 +13,7 @@ import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.TextField;
-import br.com.fzlbpms.model.Pessoa;
+import br.com.fzlbpms.model.common.Pessoa;
 import br.com.fzlbpms.view.vaadin.fzlcomponents.JLabel.JsLabel;
 //import br.com.fzlbpms.model.*;
 

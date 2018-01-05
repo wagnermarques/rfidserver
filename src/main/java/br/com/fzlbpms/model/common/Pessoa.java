@@ -1,4 +1,4 @@
-package br.com.fzlbpms.model;
+package br.com.fzlbpms.model.common;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

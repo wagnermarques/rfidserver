@@ -6,8 +6,8 @@ Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration
  
   <session-factory>
       <!-- Database connection settings -->
-      <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-      <property name="connection.url">jdbc:mysql://192.168.33.151/rfidserver?serverTimezone=UTC</property>
+      <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+      <property name="connection.url">jdbc:mysql://192.168.33.151/rfidserverfortests?serverTimezone=UTC</property>
       <property name="connection.username">root</property>
       <property name="connection.password">admin123</property>
  
@@ -24,9 +24,9 @@ Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration
       <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
  
       <!-- Echo all executed SQL to stdout -->
-      <property name="show_sql">true</property>
+      <property name="show_sql">false</property>
 
-      <property name="hibernate.hbm2ddl.auto">update</property>
+      <property name="hibernate.hbm2ddl.auto">create-drop</property>
       
       <mapping class="br.com.fzlbpms.model.common.Pessoa" />
       <mapping class="br.com.fzlbpms.model.sistema.SistemaUsuario" />

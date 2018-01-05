@@ -6,7 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
-import br.com.fzlbpms.model.Pessoa;
+import br.com.fzlbpms.model.common.Pessoa;
 import br.com.fzlbpms.persistence.HibernateUtil;
  
 

@@ -2,6 +2,7 @@ package br.com.fzlbpms.view.vaadin;
 
 import java.util.HashMap;
 
+
 import java.util.Map;
 
 import org.jboss.logging.Logger;
@@ -15,7 +16,7 @@ import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
-import br.com.fzlbpms.model.SistemaUsuario;
+import br.com.fzlbpms.model.sistema.SistemaUsuario;
 import br.com.fzlbpms.rfidserver.Main;
 import br.com.fzlbpms.service.security.LoginService;
 import br.com.fzlbpms.view.StartView;
@@ -45,8 +46,7 @@ public class LoginView extends VerticalLayout implements View {
 		
 		Button buttonOK = new Button("OK", new Button.ClickListener() {			
 			@Override
-			public void buttonClick(ClickEvent event) {
-				
+			public void buttonClick(ClickEvent event) {				
 				String txtUserNameToBeLogged = txtUserName.getValue();
 				String txtPasswordToBeLogged = txtUserSenha.getValue();
 				logger.info("txtUserNameToBeLogged = "+txtUserNameToBeLogged);

@@ -1,4 +1,4 @@
-package br.com.fzlbpms.model;
+package br.com.fzlbpms.model.sistema;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

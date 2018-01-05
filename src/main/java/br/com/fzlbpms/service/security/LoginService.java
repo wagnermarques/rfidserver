@@ -1,6 +1,7 @@
 package br.com.fzlbpms.service.security;
 
 import java.util.Map;
+
 import java.util.logging.Logger;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -12,8 +13,9 @@ import org.hibernate.SessionFactory;
 import java.util.HashMap;
 import java.util.List;
 
-import br.com.fzlbpms.model.SistemaUsuario;
+import br.com.fzlbpms.model.sistema.SistemaUsuario;
 import br.com.fzlbpms.persistence.HibernateUtil;
+import br.com.fzlbpms.persistence.SistemaUsuarioHibernateDAO;
 import br.com.fzlbpms.rfidserver.Main;
 import br.com.fzlbpms.service.Command;
 
@@ -28,10 +30,10 @@ public class LoginService implements Command<Map<String, String>, SistemaUsuario
 		String userNameToBeLoggedIn = param.get("userName");
 		String userPasswordToBeLoggedIn = param.get("userPassword");
 
-		String adminUserPassword = (String) Main.getValueFromHttpSession("adminPasswod");
-		logger.info("Main.getValueFromHttpSession(\"adminPasswod\") = " + adminUserPassword);
-		logger.info("userNameToBeLoggedIn to logged in:" + userNameToBeLoggedIn);
-		logger.info("userPasswordToBeLoggedIn to logged in:" + userPasswordToBeLoggedIn);
+//		String adminUserPassword = (String) Main.getValueFromHttpSession("adminPasswod");
+//		logger.info("Main.getValueFromHttpSession(\"adminPasswod\") = " + adminUserPassword);
+//		logger.info("userNameToBeLoggedIn to logged in:" + userNameToBeLoggedIn);
+//		logger.info("userPasswordToBeLoggedIn to logged in:" + userPasswordToBeLoggedIn);
 
 		// none was informed
 		if (userNameToBeLoggedIn == null || userPasswordToBeLoggedIn == null) {
@@ -39,29 +41,20 @@ public class LoginService implements Command<Map<String, String>, SistemaUsuario
 			return null;
 		}
 
-		boolean checkUserName = userNameToBeLoggedIn.equals("admin");
-		boolean checkPassword = userPasswordToBeLoggedIn.equals(adminUserPassword);
-		logger.info("checkUserName :" + checkUserName);
-		logger.info("checkPassword :" + checkPassword);
-		logger.info("userPasswordToBeLoggedIn=" + userPasswordToBeLoggedIn);
-		logger.info("adminUserPassword=" + adminUserPassword);
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		SistemaUsuarioHibernateDAO sistemaUsuarioDAO = new SistemaUsuarioHibernateDAO(session);
+		int temQuantosUsuariosComEsseNomeDeUsuarioESenha = sistemaUsuarioDAO.temQuantos(userNameToBeLoggedIn,userPasswordToBeLoggedIn);
 
-		return login(userNameToBeLoggedIn,userPasswordToBeLoggedIn);
-	}
-
-
-	private SistemaUsuario login(String userNameToBeLoggedIn, String userPasswordToBeLoggedIn) {
-		  SessionFactory sf = HibernateUtil.getSessionFactory();
-			Session session = sf.openSession();
-			CriteriaBuilder critBuilder = session.getCriteriaBuilder();
-			CriteriaQuery<SistemaUsuario> criQry = critBuilder.createQuery(SistemaUsuario.class);
-			criQry.from(SistemaUsuario.class);
-			List<SistemaUsuario> resultList = session.createQuery(criQry).getResultList();
-			if(resultList.size() > 1 || resultList.size() == 0) return null;
-			return resultList.get(0);
-	}
-	
-	
-	
-
-}
+		
+		if(temQuantosUsuariosComEsseNomeDeUsuarioESenha == 1) {
+			//FIX: Identificar quem e a pessoa desse usuario
+			//FIX: Aplicar roles no usuario
+			SistemaUsuario sistemaUsuario = new SistemaUsuario();
+			sistemaUsuario.setLogin(userNameToBeLoggedIn);
+			
+			return sistemaUsuario;
+		}else {
+			return null;
+		}	
+	}//execute
+}//class

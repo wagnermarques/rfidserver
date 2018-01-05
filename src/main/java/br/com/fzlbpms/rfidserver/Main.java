@@ -1,43 +1,24 @@
 package br.com.fzlbpms.rfidserver;
 
-import java.util.HashMap;
 import java.util.Locale;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 
-import com.mysql.cj.fabric.xmlrpc.base.Value;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
-import com.vaadin.server.ExternalResource;
-import com.vaadin.server.Page;
-import com.vaadin.server.ServiceException;
-import com.vaadin.server.SessionDestroyEvent;
-import com.vaadin.server.SessionDestroyListener;
-import com.vaadin.server.SessionInitEvent;
-import com.vaadin.server.SessionInitListener;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
-import com.vaadin.server.VaadinServletService;
 import com.vaadin.server.VaadinSession;
-import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.Link;
-import com.vaadin.ui.SingleComponentContainer;
-import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
-import br.com.fzlbpms.model.Pessoa;
-import br.com.fzlbpms.view.EntityFormView;
 import br.com.fzlbpms.view.MenuPrincipal;
 import br.com.fzlbpms.view.StartView;
-import br.com.fzlbpms.view.vaadin.CountView;
 import br.com.fzlbpms.view.vaadin.LoginView;
-import br.com.fzlbpms.view.vaadin.MessageView;
 import br.com.fzlbpms.view.vaadin.framework.DefaultAppSessionInitListener;
 
 /**

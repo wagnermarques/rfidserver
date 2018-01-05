@@ -2,11 +2,12 @@ package br.com.fzlbpms.persistence;
 
 import java.util.List;
 
+
 import javax.persistence.EntityManager;
 
-import br.com.fzlbpms.model.Pessoa;
+import br.com.fzlbpms.model.common.Pessoa;
 
-public class PessoaJPADAO {
+public class PessoaJPADAO extends AbstractMethodError {
 
 	EntityManager entityManager;
 	public PessoaJPADAO(EntityManager em) {

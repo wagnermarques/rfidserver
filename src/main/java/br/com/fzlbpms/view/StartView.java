@@ -1,6 +1,7 @@
 package br.com.fzlbpms.view;
 
 import com.vaadin.navigator.Navigator;
+
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.ExternalResource;
@@ -12,7 +13,7 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 
-import br.com.fzlbpms.model.SistemaUsuario;
+import br.com.fzlbpms.model.sistema.SistemaUsuario;
 import br.com.fzlbpms.rfidserver.Main;
 import br.com.fzlbpms.view.vaadin.CountView;
 import br.com.fzlbpms.view.vaadin.LoginView;
