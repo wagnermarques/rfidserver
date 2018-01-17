@@ -1,43 +1,36 @@
 package br.com.fzlbpms.model.sistema;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import br.com.fzlbpms.model.common.Pessoa;
 
 @Entity
-public class SistemaUsuario extends Pessoa {
+public class SistemaUsuario{
 
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
 	private String login;
 	private String senha;
-
-	// @OneToMany(fetch = FetchType.EAGER)
-	// private List<SistemaUsuarioRole> roles = new ArrayList<SistemaUsuarioRole>();
-
-	public SistemaUsuario() {
-		super(null);
+	
+	public SistemaUsuario() {		
 	}
 
-	public SistemaUsuario(String nomePessoa, String login, String senha) {
-		super(nomePessoa);
+	public SistemaUsuario(String login, String senha) {		
 		this.login = login;
 		this.senha = senha;
 	}
 
-	// public void setRole(String role){
-	// SistemaUsuarioRole roleObj = new SistemaUsuarioRole(role);
-	// this.roles.add(roleObj);
-	// }
-	//
-	//
-	// //getters and setters
-	//
-	// public Integer getId() {
-	// return id;
-	// }
+	public Integer getId() {
+		return id;
+	}
 
-	// public void setId(Integer id) {
-	// this.id = id;
-	// }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getLogin() {
 		return login;
@@ -54,14 +47,5 @@ public class SistemaUsuario extends Pessoa {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
-	// public List<SistemaUsuarioRole> getRoles() {
-	// return roles;
-	// }
-	//
-	//
-	// public void setRoles(List<SistemaUsuarioRole> roles) {
-	// this.roles = roles;
-	// }
-
+	
 }

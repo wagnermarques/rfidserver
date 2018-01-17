@@ -25,15 +25,12 @@ import br.com.fzlbpms.model.sistema.SistemaUsuario;
 @NamedQueries(
 		@NamedQuery(name="temQuantos",query="select count(*) from SistemaUsuario u where u.login = ? and u.senha = ?")
 		)
-public class SistemaUsuarioHibernateDAO extends AbstrGenericHibernateDAO<SistemaUsuario>{
+public class SistemaUsuarioHibernateDAO extends GenericHibernateDAOImp<SistemaUsuario, Long>{	
 	
 	Logger logger = Logger.getLogger(SistemaUsuarioHibernateDAO.class.getName());
 
-	private Session session;
-
-
-	public SistemaUsuarioHibernateDAO(Session session) {
-		super(session);
+	public SistemaUsuarioHibernateDAO(Session session, Class entityClass, Class pkClass) {
+		super(session,SistemaUsuario.class, pkClass);
 		this.session = session;
 	}
 
@@ -78,13 +75,10 @@ public class SistemaUsuarioHibernateDAO extends AbstrGenericHibernateDAO<Sistema
 		
 		if (qtdeDeUsuariosAdmin == 0) {
 
-			SistemaUsuario userAdmin = new SistemaUsuario("Admin", "admin", "admin123");
-			SistemaUsuario userTest = new SistemaUsuario("TestUser", "test", "test123");
-
-			this.session.beginTransaction();
+			SistemaUsuario userAdmin = new SistemaUsuario("admin", "admin123");
+			SistemaUsuario userTest = new SistemaUsuario("test", "test123");
 			this.session.save(userAdmin);
-			this.session.save(userTest);
-			this.session.getTransaction().commit();			
+			this.session.save(userTest);						
 			
 		} else if (qtdeDeUsuariosAdmin > 1) {
 			throw new RuntimeException("Nao deveria haver mais de um usuario padrao Admin");
@@ -92,12 +86,8 @@ public class SistemaUsuarioHibernateDAO extends AbstrGenericHibernateDAO<Sistema
 		}
 
 		if (qtdeDeUsuariosGuest == 0) {
-
-			SistemaUsuario userGuest = new SistemaUsuario("Guest", "guest", "guest123");
-			this.session.beginTransaction();
-			this.session.save(userGuest);
-			this.session.getTransaction().commit();
-			
+			SistemaUsuario userGuest = new SistemaUsuario("guest", "guest123");
+			this.session.save(userGuest);			
 		} else if (qtdeDeUsuariosGuest > 1) {
 			throw new RuntimeException("Nao deveria haver mais de um usuario padrao Guest");
 			// lembrando que se tem um apenas, entao tudo ok
@@ -109,18 +99,7 @@ public class SistemaUsuarioHibernateDAO extends AbstrGenericHibernateDAO<Sistema
 		CriteriaBuilder criteriaBuilder = this.session.getCriteriaBuilder();
 		CriteriaDelete<SistemaUsuario> qryDelete = criteriaBuilder.createCriteriaDelete(SistemaUsuario.class);
 		Root<SistemaUsuario> deleteFrom = qryDelete.from(SistemaUsuario.class);
-		this.session.beginTransaction();
 		this.session.createQuery(qryDelete).executeUpdate();
-		this.session.getTransaction().commit();
 	}
-	
 
-	
-	@Override
-	public List<SistemaUsuario> ListarTodos() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
 }

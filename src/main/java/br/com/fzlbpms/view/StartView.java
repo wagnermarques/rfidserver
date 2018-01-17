@@ -66,7 +66,7 @@ public class StartView extends VerticalLayout implements View {
 			Main.navigator.navigateTo(LoginView.LOGIN_VIEW_NAME);
 		}else {
 			SistemaUsuario userLoggedIn =  (SistemaUsuario) Main.getValueFromHttpSession("userLoggedIn");		
-			Notification not = new Notification("Ola "+ userLoggedIn.getNome());
+			Notification not = new Notification("Ola ");
 		}
 	}
 }

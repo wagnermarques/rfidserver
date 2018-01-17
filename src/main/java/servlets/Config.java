@@ -3,7 +3,6 @@ package servlets;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,17 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
-import br.com.fzlbpms.model.common.Pessoa;
 import br.com.fzlbpms.model.sistema.SistemaUsuario;
-import br.com.fzlbpms.model.sistema.SistemaUsuarioRole;
-
 import br.com.fzlbpms.persistence.HibernateUtil;
-import br.com.fzlbpms.persistence.JPAUtil;
-import br.com.fzlbpms.persistence.JdbcUtil;
-
-import br.com.fzlbpms.persistence.PessoaJPADAO;
 import br.com.fzlbpms.persistence.SistemaUsuarioHibernateDAO;
 
 /**
@@ -60,11 +51,12 @@ public class Config extends HttpServlet {
 		
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();		
-		SistemaUsuarioHibernateDAO usuarioDAO = new SistemaUsuarioHibernateDAO(session);
-		
+		//SistemaUsuarioHibernateDAO usuarioDAO = new SistemaUsuarioHibernateDAO(session,);
+		SistemaUsuarioHibernateDAO usuarioDAO = new SistemaUsuarioHibernateDAO(session, SistemaUsuario.class, Long.class);
+		usuarioDAO.beginTransaction();
 		usuarioDAO.excluiTodos();
 		usuarioDAO.createDefaultUsers();
-		
+		usuarioDAO.commit();		
 	}
 
 

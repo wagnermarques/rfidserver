@@ -2,6 +2,7 @@ package br.com.fzlbpms.rfidserver;
 
 import java.util.Locale;
 
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 
@@ -10,15 +11,22 @@ import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.server.VaadinRequest;
+import com.vaadin.server.VaadinService;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
+import br.com.fzlbpms.model.common.Pessoa;
+import br.com.fzlbpms.view.crudview.PessoaFormInserirView;
+import br.com.fzlbpms.view.crudview.PessoaListView;
+import br.com.fzlbpms.view.crudview.PessoaListViewForDeletion;
+import br.com.fzlbpms.view.crudview.SistemaUsuarioFormViewFoInsertion;
 import br.com.fzlbpms.view.MenuPrincipal;
 import br.com.fzlbpms.view.StartView;
 import br.com.fzlbpms.view.vaadin.LoginView;
+import br.com.fzlbpms.view.vaadin.MessageView;
 import br.com.fzlbpms.view.vaadin.framework.DefaultAppSessionInitListener;
 
 /**
@@ -38,6 +46,7 @@ import br.com.fzlbpms.view.vaadin.framework.DefaultAppSessionInitListener;
 public class Main extends UI implements View {
 
 	public static Navigator navigator;
+	public static String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();			
 
 	@Override
 	protected void init(VaadinRequest vaadinRequest) {
@@ -70,9 +79,14 @@ public class Main extends UI implements View {
 		// Create and register the views
 		navigator.addView(StartView.START_VIEW_NAME, new StartView());
 		navigator.addView(LoginView.LOGIN_VIEW_NAME, new LoginView());
-
-		//navigator.addView(EntityFormView.VIEW_NAME, new EntityFormView(new Pessoa(), "Cadastro de Pessoas"));
-		//navigator.addView(MessageView.NAME, new MessageView());
+		
+		navigator.addView(SistemaUsuarioFormViewFoInsertion.VIEW_NAME, new SistemaUsuarioFormViewFoInsertion());
+		
+		navigator.addView(PessoaFormInserirView.VIEW_NAME, new PessoaFormInserirView(new Pessoa(), "Formulario: Cadastro de Pessoas"));
+		navigator.addView(PessoaListView.VIEW_NAME, new PessoaListView());
+		navigator.addView(PessoaListViewForDeletion.VIEW_NAME, new PessoaListViewForDeletion());
+		
+		navigator.addView(MessageView.NAME, new MessageView());
 	}
 
 	public static void setValueInHttpSession(String attrName, Object value) {

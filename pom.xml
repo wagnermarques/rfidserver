@@ -20,15 +20,21 @@
 		<jetty.http.port>9999</jetty.http.port>
                 <tomcat.http.port>9999</tomcat.http.port>
 
+                
                 <tomcat8-instance-hostname>192.168.33.91</tomcat8-instance-hostname>
+                <!--               
+                     <tomcat8-instance-hostname>50.116.3.116</tomcat8-instance-hostname>
+                     <tomcat8-instance-servlet-port>8091</tomcat8-instance-servlet-port>
+                -->
                 <tomcat8-instance-servlet-port>8080</tomcat8-instance-servlet-port>
+                                
                 <tomcat8-instance-username>admin</tomcat8-instance-username>
                 <tomcat8-instance-password>admin123</tomcat8-instance-password>
                 
                 <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<maven.compiler.source>1.7</maven.compiler.source>
-		<maven.compiler.target>1.7</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 
 		<vaadin.widgetset.mode>local</vaadin.widgetset.mode>
 
@@ -185,7 +191,12 @@
 			<artifactId>hibernate-jpa-2.1-api</artifactId>
 			<version>${version.hibernate-jpa-2.1-api}</version>
 		</dependency>
-
+                <!-- c3p0 -->
+                <dependency>
+                  <groupId>com.mchange</groupId>
+                  <artifactId>c3p0</artifactId>
+                  <version>0.9.5.2</version>
+                </dependency>
 
                 <!-- jdbc drivers -->
                 <!-- https://mvnrepository.com/artifact/org.hsqldb/hsqldb -->
@@ -270,7 +281,16 @@
             
 	  </resources>
 
-          <plugins>                  
+          <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <version>3.7.0</version>
+              <configuration>
+                <source>${maven.compiler.source}</source>
+                <target>${maven.compiler.target}</target>
+              </configuration>
+            </plugin>
 	    <plugin>
 	      <groupId>org.apache.maven.plugins</groupId>
 	      <artifactId>maven-war-plugin</artifactId>

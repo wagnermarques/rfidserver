@@ -2,6 +2,7 @@ package br.com.fzlbpms.service.security;
 
 import java.util.Map;
 
+
 import java.util.logging.Logger;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -30,31 +31,26 @@ public class LoginService implements Command<Map<String, String>, SistemaUsuario
 		String userNameToBeLoggedIn = param.get("userName");
 		String userPasswordToBeLoggedIn = param.get("userPassword");
 
-//		String adminUserPassword = (String) Main.getValueFromHttpSession("adminPasswod");
-//		logger.info("Main.getValueFromHttpSession(\"adminPasswod\") = " + adminUserPassword);
-//		logger.info("userNameToBeLoggedIn to logged in:" + userNameToBeLoggedIn);
-//		logger.info("userPasswordToBeLoggedIn to logged in:" + userPasswordToBeLoggedIn);
-
 		// none was informed
 		if (userNameToBeLoggedIn == null || userPasswordToBeLoggedIn == null) {
 			logger.info("User Not Authenticated: userNameToBeLoggedIn or userPasswordToBeLoggedIn was null");
 			return null;
 		}
 
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		SistemaUsuarioHibernateDAO sistemaUsuarioDAO = new SistemaUsuarioHibernateDAO(session);
+		Session session = HibernateUtil.getSessionFactory().openSession();	
+		SistemaUsuarioHibernateDAO sistemaUsuarioDAO = new SistemaUsuarioHibernateDAO(session, SistemaUsuario.class, Long.class);		
 		int temQuantosUsuariosComEsseNomeDeUsuarioESenha = sistemaUsuarioDAO.temQuantos(userNameToBeLoggedIn,userPasswordToBeLoggedIn);
-
 		
 		if(temQuantosUsuariosComEsseNomeDeUsuarioESenha == 1) {
 			//FIX: Identificar quem e a pessoa desse usuario
 			//FIX: Aplicar roles no usuario
 			SistemaUsuario sistemaUsuario = new SistemaUsuario();
-			sistemaUsuario.setLogin(userNameToBeLoggedIn);
-			
+			sistemaUsuario.setLogin(userNameToBeLoggedIn);			
 			return sistemaUsuario;
 		}else {
 			return null;
 		}	
+		
 	}//execute
+	
 }//class
