@@ -69,8 +69,7 @@ class HibernateFunctionalitiesTest {
 	 * Esse teste roda o o metodo create DefaultUsers() do DAO do sistema usuario e depois
 	 * testa usando o metodo tem quantos pra ver se tem um usuario de cada
 	 */
-	private void sistemaUsuarioDAO_createDefaultUsuers() {
-		
+	private void sistemaUsuarioDAO_createDefaultUsuers() {		
 		suDAO.beginTransaction();
 		suDAO.createDefaultUsers();
 		suDAO.commit();

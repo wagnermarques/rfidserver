@@ -13,14 +13,15 @@ import com.vaadin.ui.Grid;
 import com.vaadin.ui.VerticalLayout;
 
 import br.com.fzlbpms.model.common.Pessoa;
+import br.com.fzlbpms.model.sistema.SistemaUsuario;
 import br.com.fzlbpms.persistence.GenericHibernateDAOImp;
 import br.com.fzlbpms.persistence.HibernateUtil;
 import br.com.fzlbpms.persistence.IGenericDAO;
 
 
-public class PessoaListView extends VerticalLayout implements View {
+public class SistemaUsuarioListView extends VerticalLayout implements View {
 	
-	Logger logger = Logger.getLogger(PessoaListView.class.getCanonicalName());
+	Logger logger = Logger.getLogger(SistemaUsuarioListView.class.getCanonicalName());
 	
 	/**
 	 * 
@@ -29,21 +30,20 @@ public class PessoaListView extends VerticalLayout implements View {
 	
 	private int numacessos = 0;
 	
-	public static String VIEW_NAME="pessoa_list_view";
+	public static String VIEW_NAME="sistema_usuario_list_view";
 	
-	private List<Pessoa> listPessoas;	
-	private IGenericDAO<Pessoa,Long> pessoaDAO;
+	private List<SistemaUsuario> listSistUsuarios;	
+	private IGenericDAO<SistemaUsuario,Long> suDAO;
 
-	private Grid<Pessoa> grid;
+	private Grid<SistemaUsuario> grid;
 
 	
-	public PessoaListView() {
-		logger.info(" ### public PessoaListView() {... ");
+	public SistemaUsuarioListView() {
+		logger.info(" ### public SistemaUsuarioListView() {... ");
 		this.grid = new Grid<>();
-		this.grid.addColumn(Pessoa::getNome).setCaption("Nome");
-		this.grid.addColumn(Pessoa::getId).setCaption("Identificador");
-		this.grid.addColumn(Pessoa::getRg).setCaption("RG");
-		this.grid.addColumn(Pessoa::getCpf).setCaption("CPF");
+		this.grid.addColumn(SistemaUsuario::getId).setCaption("id");
+		this.grid.addColumn(SistemaUsuario::getLogin).setCaption("Login");
+		this.grid.addColumn(SistemaUsuario::getSenha).setCaption("senha");		
 		this.grid.setFrozenColumnCount(2);                
 		this.addComponent(this.grid);
 	}
@@ -55,25 +55,24 @@ public class PessoaListView extends VerticalLayout implements View {
 		
 		//Cada vez que a view entra a gente quer controlar o seu estado desde o inicio
 		//a gente descarta o estado anterior e inicia o estado dela tudo de novo
-		this.listPessoas = null;
+		this.listSistUsuarios = null;
 		
-		if(this.pessoaDAO != null) {
-			this.pessoaDAO.clearSession();
-			this.pessoaDAO.closeSession();
-			this.pessoaDAO = null;
+		if(this.suDAO != null) {
+			this.suDAO.clearSession();
+			this.suDAO.closeSession();
+			this.suDAO = null;
 		}
 		
-		Session session = HibernateUtil.getSessionFactory().openSession();		
-		pessoaDAO = new GenericHibernateDAOImp<>(session, Pessoa.class, Long.class);
-		this.listPessoas = this.pessoaDAO.ListarTodos();
-
-		logger.info(" ### public void enter(ViewChangeEvent event) {... [this.listPessoas.size()] => "+this.listPessoas.size());
+		Session session = HibernateUtil.getSessionFactory().openSession();				
+		suDAO = new GenericHibernateDAOImp<>(session, SistemaUsuario.class, Long.class);
+		this.listSistUsuarios = this.suDAO.ListarTodos();
+		logger.info(this.listSistUsuarios.toString());
 		//https://stackoverflow.com/questions/31861375/vaadin-refresh-grid-after-row-modification
 		
 		//setEditorEnabled(true);
 		//this.grid.setEditorEnabled(false);
 		this.grid.getDataProvider().refreshAll();
-		this.grid.setItems(this.listPessoas);
+		this.grid.setItems(this.listSistUsuarios);
 		View.super.enter(event);
 	}
 }

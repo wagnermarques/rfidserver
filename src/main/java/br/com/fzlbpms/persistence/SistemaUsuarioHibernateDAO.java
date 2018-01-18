@@ -1,8 +1,6 @@
 package br.com.fzlbpms.persistence;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -47,16 +45,14 @@ public class SistemaUsuarioHibernateDAO extends GenericHibernateDAOImp<SistemaUs
 	 */
 	public int temQuantos(String login, String senha) {
 		logger.info("public int temQuantos(String login, String senha) {...");
-		System.out.println("this.session : " +this.session );
-		CriteriaBuilder criteriaBuilder = this.session.getCriteriaBuilder();
-		CriteriaQuery<SistemaUsuario> qry = criteriaBuilder.createQuery(SistemaUsuario.class);		
+		CriteriaBuilder cB = this.session.getCriteriaBuilder();
+		CriteriaQuery<SistemaUsuario> qry = cB.createQuery(SistemaUsuario.class);		
 		Root<SistemaUsuario> from = qry.from(SistemaUsuario.class);
 		qry.select(from);
-		qry.where(criteriaBuilder.and(
-				criteriaBuilder.equal(from.get("login"), login),
-				criteriaBuilder.equal(from.get("senha"), senha)
-				));
-		
+		qry.where(cB.and(
+				cB.equal(from.get("login"), login),
+				cB.equal(from.get("senha"), senha)
+				));		
 		Query<SistemaUsuario> createdQuery = session.createQuery(qry);
 		List<SistemaUsuario> resultList = createdQuery.getResultList();
 		return resultList.size();		
@@ -67,9 +63,8 @@ public class SistemaUsuarioHibernateDAO extends GenericHibernateDAOImp<SistemaUs
 	 * e
 	 * Cria usuario Guest com senha guest123
 	 */
-	public void createDefaultUsers() {
-		logger.debug("public void createDefaultUsers() {...");
-		logger.info("public void createDefaultUsers() {...");
+	public void createDefaultUsers() {		
+		
 		int qtdeDeUsuariosAdmin = this.temQuantos("admin", "admin123");
 		int qtdeDeUsuariosGuest = this.temQuantos("guest", "guest123");
 		
@@ -96,8 +91,8 @@ public class SistemaUsuarioHibernateDAO extends GenericHibernateDAOImp<SistemaUs
 	}
 	
 	public void excluiTodos() {				
-		CriteriaBuilder criteriaBuilder = this.session.getCriteriaBuilder();
-		CriteriaDelete<SistemaUsuario> qryDelete = criteriaBuilder.createCriteriaDelete(SistemaUsuario.class);
+		CriteriaBuilder cB = this.session.getCriteriaBuilder();
+		CriteriaDelete<SistemaUsuario> qryDelete = cB.createCriteriaDelete(SistemaUsuario.class);
 		Root<SistemaUsuario> deleteFrom = qryDelete.from(SistemaUsuario.class);
 		this.session.createQuery(qryDelete).executeUpdate();
 	}

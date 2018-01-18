@@ -23,6 +23,10 @@ import br.com.fzlbpms.view.crudview.PessoaFormInserirView;
 import br.com.fzlbpms.view.crudview.PessoaListView;
 import br.com.fzlbpms.view.crudview.PessoaListViewForDeletion;
 import br.com.fzlbpms.view.crudview.SistemaUsuarioFormViewFoInsertion;
+import br.com.fzlbpms.view.crudview.SistemaUsuarioFormViewForUpdate;
+import br.com.fzlbpms.view.crudview.SistemaUsuarioListView;
+import br.com.fzlbpms.view.crudview.SistemaUsuarioListViewForDeletion;
+import br.com.fzlbpms.view.crudview.SistemaUsuarioListViewForUpdate;
 import br.com.fzlbpms.view.MenuPrincipal;
 import br.com.fzlbpms.view.StartView;
 import br.com.fzlbpms.view.vaadin.LoginView;
@@ -81,6 +85,12 @@ public class Main extends UI implements View {
 		navigator.addView(LoginView.LOGIN_VIEW_NAME, new LoginView());
 		
 		navigator.addView(SistemaUsuarioFormViewFoInsertion.VIEW_NAME, new SistemaUsuarioFormViewFoInsertion());
+		navigator.addView(SistemaUsuarioFormViewForUpdate.VIEW_NAME, new SistemaUsuarioFormViewForUpdate());
+		navigator.addView(SistemaUsuarioListViewForUpdate.VIEW_NAME, new SistemaUsuarioListViewForUpdate());		
+		
+		navigator.addView(SistemaUsuarioListView.VIEW_NAME, new SistemaUsuarioListView());
+		navigator.addView(SistemaUsuarioListViewForDeletion.VIEW_NAME, new SistemaUsuarioListViewForDeletion());
+		
 		
 		navigator.addView(PessoaFormInserirView.VIEW_NAME, new PessoaFormInserirView(new Pessoa(), "Formulario: Cadastro de Pessoas"));
 		navigator.addView(PessoaListView.VIEW_NAME, new PessoaListView());

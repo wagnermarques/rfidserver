@@ -12,7 +12,7 @@ import br.com.fzlbpms.model.common.Pessoa;
 public class SistemaUsuario{
 
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	private String login;
 	private String senha;
 	
@@ -24,11 +24,11 @@ public class SistemaUsuario{
 		this.senha = senha;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
