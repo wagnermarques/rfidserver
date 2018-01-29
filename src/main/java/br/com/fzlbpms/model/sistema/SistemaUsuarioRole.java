@@ -9,7 +9,7 @@ public class SistemaUsuarioRole {
 	@Id
 	String roleName;
 
-	public SistemaUsuarioRole(String role) {
+	public SistemaUsuarioRole(String roleName) {
 		this.roleName = roleName;
 	}
 
